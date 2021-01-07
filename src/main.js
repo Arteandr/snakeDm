@@ -1,4 +1,13 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
-createApp(App).mount('#app')
+
+if(!window.mp){
+    window.mp = {
+        trigger(){
+            
+        }
+    }
+}
+
+global.app = createApp(App).mount('#app')

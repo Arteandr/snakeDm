@@ -1,26 +1,36 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <Auth v-if="interfaces.auth.show" />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Auth from "./views/Authentication/AuthView";
 
 export default {
   name: 'App',
+  data() {
+    return {
+      interfaces: {
+        "auth": {
+          show: 0,
+        }
+      }
+    }
+  },
   components: {
-    HelloWorld
+    Auth
+  },
+  methods: {
+    showInterface(name,toggle){
+      this.interfaces[name].show = toggle;
+    },
+    
+    hideAllInterfaces() {
+      for (let el in this.interfaces) {
+        this.interfaces[el] = 0;
+      }
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
